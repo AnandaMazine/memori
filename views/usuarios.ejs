@@ -1,0 +1,82 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<div class="container-formulario">
+    <h3> Registro de Usuários </h3>
+    <hr>
+    <div class="wrapper">
+    <div class="cadastrar">
+        <h4> Cadastrar novo Usuário </h4>
+        <hr>
+        <form action="/usuarios/new" method="POST">
+            <div class="inserir-dados">
+            <label> Nome:</label>
+            <input type="text" name="nome" placeholder="Digite o nome completo" class="form-input" id="nome" required>
+            <label> Nome de usuário:</label>
+            <input type="text" name="nomeUsuario" placeholder="Digite o nome de usuário" class="form-input" id="nomeUsuario" required>
+            <label> E-mail:</label>
+            <input type="email" name="emailUsuario" placeholder="Digite o e-mail" class="form-input" id="emailUsuario" required>
+            <label>Senha:</label>
+            <input type="password" name="senhaUsuario" placeholder="Digite a senha" class="form-input" id="senhaUsuario" required>
+            <br><br>
+            <hr>
+            <label> Permissões:</label><br>
+            <input type="checkbox" name="permissao" id="permissao" value="editor">
+            <label for="permissao" class="texto-checkbox"> Editor</label>
+            <input type="checkbox" name="permissao" id="permissao" value="leitor"> 
+            <label for="permissao" class="texto-checkbox"> Leitor</label>
+            <div class="div-botao">
+                <button name="cadastrar-usuario" class="button-cadastro" id="cadastrarUsuario" type="submit"> Cadastrar </button>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="consultar">
+        <h4> Consultar Usuários </h4>
+        <table>
+          <thead>
+            <th> Id </th>
+            <th> Nome </th>
+            <th> Nome de usuário </th>
+            <th> E-mail </th>
+            <th> Permissões </th>
+          </thead>
+          <tbody>
+            <tr>
+                <td>1</td>
+                <td>Larissa</td>
+                <td>ltoyohashi</td>
+                <td>ltoyohashi@gmail.com</td>
+                <td>1</td>
+                <td>
+                    <Button name="editar-usuario" class="btn-editar"> <i class = "fas fa-pencil"></i></Button>
+                </td>
+                <td>
+                    <Button name="excluir-usuario" class="btn-excluir"> <i class = "fas fa-cancel"></i></Button>
+                </td>
+            </tr>
+            
+            <% usuarios.forEach(usuario => { %>
+            <tr>
+                <td><%= usuario.id %></td>
+                <td><%= usuario.nome %></td>
+                <td><%= usuario.nomeUsuario %></td>
+                <td><%= usuario.emailUsuario %></td>
+                <td><%= usuario.permissao %></td>
+                
+                <td><a href="/usuarios/edit/<%= usuario.id %>"> <Button name="editar-usuario" class="btn-editar"> <i class = "fas fa-pencil"></i></Button></a></td>
+                <td><a href="/usuarios/delete/<%= usuario.id %>"><Button name="excluir-usuario" class="btn-excluir"> <i class = "fas fa-cancel"></i></Button></a></td>
+            </tr>
+            <% }) %>
+          </tbody>
+            
+            
+        </table>
+    </div>
+</div>
+    
+</div>
+
+<%- include ('partials/footer.ejs') %>
