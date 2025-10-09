@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import connection from "../config/sequelize-config.js";
 
-const Quizzes = connection.define('Quizzes',{
+const Quizz = connection.define('Quizzes',{
     pergunta:{
         type: Sequelize.STRING,
         allowNull: false,
@@ -35,5 +35,5 @@ const Quizzes = connection.define('Quizzes',{
         allowNull: false,
     }
 })
-Quizzes.sync({ force: true });
-export default Quizzes;
+Quizz.sync({ force: true });
+export default Quizz;
