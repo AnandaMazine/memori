@@ -1,79 +1,98 @@
-import express from "express"
-import Modelagens from "../models/Modelagens.js";
+import modelagemService from "../services/ModelagemService.js"; // Importando o serviço de Modelagens
+import { ObjectId } from "mongodb";
 
+// Função para listar Modelagens
+const getAllModelagens = async (req, res) => {
+  try {
+    const modelagens = await modelagemService.getAll();
+    res.status(200).json({ modelagens: modelagens });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+};
 
-// Carregando o método do Express para gerenciamento de Rotas
-const router = express.Router(); // Método para gerenciar a rota
+// Função para criar uma nova Modelagem
+const createModelagem = async (req, res) => {
+  try {
+    const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
+      req.body;
+    const novaModelagem = await modelagemService.create({
+      nomeModelagem,
+      nomeCidade,
+      nomeCheckpoint,
+      arquivoModelagens,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+};
 
-    // Rota de modelagem
-    router.get("/modelagens", (req, res) => {
-        Modelagens.findAll().then((modelagens) => {
-          res.render("modelagens", {
-            // Enviando a variável produto para a página
-            modelagens : modelagens,
-          });
-        });
-      });
-  
-    // Cadastrando dados das rotas
-    router.post("/modelagens/new", (req,res) => {
-      const id = req.body.id
-      const nomeModelagens = req.body.nomeModelagens
-      const nomeCidade = req.body.nomeCidade
-      const nomeCheckpoint = req.body.nomeCheckpoint
-      const arquivoModelagens = req.body.arquivoModelagens
-      Modelagens.create({
-        id : id,
-        nomeModelagens : nomeModelagens,
-        nomeCidade : nomeCidade,
-        nomeCheckpoint : nomeCheckpoint,
-        arquivoModelagens : arquivoModelagens
-      }).then(() => {
-        res.redirect("/modelagens")
-      })
-    })
-    // Excluindo dados das rotas
-    router.get("/modelagens/delete/:id", (req,res) => {
+// Função para deletar Modelagens
+const deleteModelagem = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      Modelagens.destroy ({
-        where: {
-          id : id,
-        }
-      }).then(() => {
-        res.redirect("/modelagens");
-      });
-    });
-  
-    // Rotas de edição das rotas
-    router.get("/modelagens/edit/:id", (req,res) => {
-      const id = req.params.id;
-      Modelagens.findByPk(id).then(function(modelagens) {
-        res.render("modelagensEdit", {
-          modelagens : modelagens,
-        });
-      });
-    });
-    // Rota de alteração de rotas
-    router.post("/modelagens/update/:id", (req,res) => {
-      const id = req.body.id
-      const nomeModelagens = req.body.nomeModelagens
-      const nomeCidade = req.body.nomeCidade
-      const nomeCheckpoint = req.body.nomeCheckpoint
-      const arquivoModelagens = req.body.arquivoModelagens
-      Modelagens.update(
-        {
-        id : id,
-        nomeModelagens : nomeModelagens,
-        nomeCidade : nomeCidade,
-        nomeCheckpoint : nomeCheckpoint,
-        arquivoModelagens : arquivoModelagens
-        },
-        {where: {id : id}}
-      ).then(() => {
-        res.redirect("/modelagens")
-      });
-    });
+      await modelagemService.delete(id);
+      res.sendStatus(204);
+    } else {
+      res.status(400).json({ error: "A ID enviada é inválida. " });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor. " });
+  }
+};
 
-    
-  // Exportando o módulo
-  export default router;
+// Função para atualizar Modelagens
+const updateModelagem = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
+        req.body;
+      const modelagem = await modelagemService.update(
+        id,
+        nomeModelagem,
+        nomeCidade,
+        nomeCheckpoint,
+        arquivoModelagens
+      );
+      res.status(200).json({ modelagem });
+    } else {
+      res.sendStatus(400);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor. " });
+  }
+};
+
+const getOneModelagem = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const modelagem = await modelagemService.getOne(id);
+      if (!modelagem) {
+        res.status(404).json({ error: "Modelagem não encontrada." });
+      } else {
+        res.status(200).json({ modelagem });
+      }
+    } else {
+      res.status(400).json({ error: "A ID enviada é inválida. " });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+};
+
+// Exportando o módulo
+export default {
+  getAllModelagens,
+  createModelagem,
+  deleteModelagem,
+  updateModelagem,
+  getOneModelagem,
+};

@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import connection from "../config/sequelize-config.js";
 
-const Checkpoints = connection.define('checkpoints',{
+const Checkpoint = connection.define('checkpoints',{
     nomeCheckpoint:{
         type: Sequelize.STRING,
         allowNull: true,
@@ -27,5 +27,5 @@ const Checkpoints = connection.define('checkpoints',{
         allowNull: true,
     }
 });
-Checkpoints.sync({force:true});
-export default Checkpoints;
+Checkpoint.sync({force:true});
+export default Checkpoint;

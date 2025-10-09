@@ -1,80 +1,104 @@
-import express from "express"
-import Checkpoints from "../models/Checkpoints.js";
+import checkpointService from "../services/CheckpointService.js"; // Importando o serviço de Checkpoints
+import { ObjectId } from "mongodb";
 
+// Função para listar Checkpoints
+const getAllCheckpoints = async (req, res) => {
+  try {
+    const checkpoints = await checkpointService.getAll();
+    res.status(200).json({ checkpoints: checkpoints });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
+};
 
-// Carregando o método do Express para gerenciamento de Rotas
-const router = express.Router(); // Método para gerenciar a rota
-
-//ROTA DE PRODUTOS
-router.get("/checkpoints", (req, res) => {
-  Checkpoints.findAll().then((checkpoints) => {
-    res.render("checkpoints", {
-      // Enviando a variável produto para a página
-      checkpoints : checkpoints,
+// Função para criar um novo Checkpoint
+const createCheckpoint = async (req, res) => {
+  try {
+    const {
+      nomeCheckpoint,
+      latitudeCheckpoint,
+      longitudeCheckpoint,
+      tituloRota,
+      descricaoCheckpoint,
+    } = req.body;
+    await checkpointService.Create({
+      nomeCheckpoint,
+      latitudeCheckpoint,
+      longitudeCheckpoint,
+      tituloRota,
+      descricaoCheckpoint,
     });
-  });
-});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+};
 
-    // Cadastrando dados das rotas
-    router.post("/checkpoints/new", (req,res) => {
-      const nomeCheckpoint = req.body.nomeCheckpoint
-      const latitudeCheckpoint = req.body.latitudeCheckpoint
-      const longitudeCheckpoint = req.body.longitudeCheckpoint
-      const tituloRota = req.body.tituloRota
-      const descricaoCheckpoint = req.body.descricaoCheckpoint
-      Checkpoints.create({
-        nomeCheckpoint : nomeCheckpoint,
-        latitudeCheckpoint : latitudeCheckpoint,
-        longitudeCheckpoint : longitudeCheckpoint,
-        tituloRota : tituloRota,
-        descricaoCheckpoint : descricaoCheckpoint
-      }).then(() => {
-        res.redirect("/checkpoints")
-      })
-    })
-    // Excluindo dados das rotas
-    router.get("/checkpoints/delete/:id", (req,res) => {
-      const id = req.params.id
-      Checkpoints.destroy ({
-        where: {
-          id : id
-        }
-      }).then(() => {
-        res.redirect("/checkpoints")
-      });
-    });
-  
-    // Rotas de edição das rotas
-    router.get("/checkpoints/edit/:id", (req,res) => {
-      const id = req.params.id
-      Checkpoints.findByPk(id).then(function(checkpoint) {
-        res.render("checkpointsEdit", {
-          checkpoint : checkpoint
-        })
-      })
-    })
-    // Rota de alteração de rotas
-    router.post("/checkpoints/update/:id", (req,res) => {
-      const id = req.params.id
-      const nomeCheckpoint = req.body.nomeCheckpoint
-      const latitudeCheckpoint = req.body.latitudeCheckpoint
-      const longitudeCheckpoint = req.body.longitudeCheckpoint
-      const tituloRota = req.body.tituloRota
-      const descricaoCheckpoint = req.body.descricaoCheckpoint
-      Checkpoints.update(
-        {
-          id : id,
-          nomeCheckpoint : nomeCheckpoint,
-          latitudeCheckpoint : latitudeCheckpoint,
-          longitudeCheckpoint : longitudeCheckpoint,
-          tituloRota : tituloRota,
-          descricaoCheckpoint : descricaoCheckpoint
-        },
-        {where: {id : id}}
-      ).then(() => {
-        res.redirect("/checkpoints")
-      })
-    })
+// Função para deletar checkpoints
+const deleteCheckpoint = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      await checkpointService.Delete(id);
+      res.sendStatus(204);
+    } else {
+      res.status(400).json({ error: "A ID enviada é inválida. " });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+};
 
-  // Exportando o módulo
-  export default router;
+// Funçãpo para atualizar checkpoints
+const updateCheckpoint = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const {
+        nomeCheckpoint,
+        latitudeCheckpoint,
+        longitudeCheckpoint,
+        tituloRota,
+        descricaoCheckpoint,
+      } = req.body;
+      const checkpoint = await checkpointService.Update(
+        id,
+        nomeCheckpoint,
+        latitudeCheckpoint,
+        longitudeCheckpoint,
+        tituloRota,
+        descricaoCheckpoint
+      );
+      res.status(200).json({ checkpoint });
+    } else {
+      res.sendStatus(400);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor. " });
+  }
+};
+
+// Função buscar um único Checkpoint
+const getOneCheckpoint = async (req, res) => {
+  try {
+    if (ObjectId.isValid(req.params.id)) {
+      const id = req.params.id;
+      const checkpoint = await checkpointService.getOne(id);
+      if (!checkpoint) {
+        res.status(404).json({ error: "Checkpoint não encontrado." });
+      } else {
+        res.sendStatus(200).json({ checkpoint });
+      }
+    } else {
+      res.status(400).json({ error: "A ID enviada é inválida. " });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Erro interno do servidor ." });
+  }
+};
+
+export default {getAllCheckpoints, createCheckpoint, deleteCheckpoint, updateCheckpoint, getOneCheckpoint};
