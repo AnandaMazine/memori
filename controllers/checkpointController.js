@@ -29,6 +29,7 @@ const createCheckpoint = async (req, res) => {
       tituloRota,
       descricaoCheckpoint,
     });
+    res.sendStatus(201);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Erro interno do servidor." });
@@ -101,4 +102,10 @@ const getOneCheckpoint = async (req, res) => {
   }
 };
 
-export default {getAllCheckpoints, createCheckpoint, deleteCheckpoint, updateCheckpoint, getOneCheckpoint};
+export default {
+  getAllCheckpoints,
+  createCheckpoint,
+  deleteCheckpoint,
+  updateCheckpoint,
+  getOneCheckpoint,
+};

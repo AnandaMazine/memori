@@ -1,6 +1,6 @@
 import Quizz from "../models/Quizzes.js";
 
-class QuizzService {
+class quizzService {
   async getAll() {
     try {
       const quizzes = await Quizz.find();
@@ -41,6 +41,15 @@ class QuizzService {
     try {
       await Quizz.findByIdAndDelete(id);
       console.log(`Quizz com id ${id} deletada com sucesso!`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getOne(id) {
+    try {
+      const quizz = await Quizz.findOne({ _id: id });
+      return quizz;
     } catch (error) {
       console.log(error);
     }

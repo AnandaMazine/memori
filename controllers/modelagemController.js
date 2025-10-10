@@ -17,12 +17,13 @@ const createModelagem = async (req, res) => {
   try {
     const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
       req.body;
-    const novaModelagem = await modelagemService.create({
+    await modelagemService.Create({
       nomeModelagem,
       nomeCidade,
       nomeCheckpoint,
       arquivoModelagens,
     });
+    res.sendStatus(201);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Erro interno do servidor." });
@@ -34,7 +35,7 @@ const deleteModelagem = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      await modelagemService.delete(id);
+      await modelagemService.Delete(id);
       res.sendStatus(204);
     } else {
       res.status(400).json({ error: "A ID enviada é inválida. " });
@@ -52,7 +53,7 @@ const updateModelagem = async (req, res) => {
       const id = req.params.id;
       const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
         req.body;
-      const modelagem = await modelagemService.update(
+      const modelagem = await modelagemService.Update(
         id,
         nomeModelagem,
         nomeCidade,

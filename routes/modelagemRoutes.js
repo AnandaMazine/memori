@@ -1,13 +1,13 @@
 import express from "express";
 const modelagemRoutes = express.Router();
-import ModelagemController from "../controllers/ModelagemController.js";
+import modelagemController from "../controllers/modelagemController.js";
 
 // import Auth from "../middleware/Auth.js";
 
-modelagemRoutes.get("/modelagens", ModelagemController.getAllModelagens);
-modelagemRoutes.post("/modelagens", ModelagemController.createModelagem);
-modelagemRoutes.delete("/modelagens/:id", ModelagemController.deleteModelagem);
-modelagemRoutes.put("/modelagens/:id", ModelagemController.updateModelagem);
-modelagemRoutes.get("modelagens/:id", ModelagemController.getOne);
+modelagemRoutes.get("/modelagens", modelagemController.getAllModelagens);
+modelagemRoutes.post("/modelagens", modelagemController.createModelagem);
+modelagemRoutes.delete("/modelagens/:id", modelagemController.deleteModelagem);
+modelagemRoutes.put("/modelagens/:id", modelagemController.updateModelagem);
+modelagemRoutes.get("modelagens/:id", modelagemController.getOne);
 
 export default modelagemRoutes;
