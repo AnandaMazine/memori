@@ -1,8 +1,7 @@
 import express from "express";
 const quizzRoutes = express.Router();
 import quizzController from "../controllers/quizzController.js";
-
-// import Auth from "../middleware/Auth.js";
+import Auth from "../middleware/Auth.js";
 
 quizzRoutes.get("quizzes", quizzController.getAllQuizzes);
 quizzRoutes.post("quizzes", quizzController.createQuizz);

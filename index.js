@@ -1,69 +1,37 @@
-// Importando o Express com ES6 Modules
 import express from "express";
-// Iniciando o Express na variável app
+import mongoose from "mongoose";
 const app = express();
-// Importando os Controllers (onde estão as rotas)
-import RotasController from "./controllers/RotasController.js";
-import UsuariosController from "./controllers/UsuariosController.js";
-import CheckpointsController from "./controllers/CheckpointsController.js";
-import ModelagensController from "./controllers/ModelagensController.js";
-import QuizzesController from "./controllers/QuizzesController.js";
-
-import connection from "./config/sequelize-config.js";
-
-import Rotas from "./models/Rotas.js";
-import Checkpoints from "./models/Checkpoints.js";
-import Modelagens from "./models/Modelagens.js";
+// Importando para ser criado no banco 
+import Checkpoint from "./models/Checkpoint.js"
+import Modelagend from "./models/Modelagens.js";
 import Quizzes from "./models/Quizzes.js";
+import Rotas from "./models/Rotas.js";
 import Usuarios from "./models/Usuarios.js";
 
-connection.authenticate().then(() =>{
-  console.log("Conexão com o banco de dados realizada com sucesso!");
-}).catch((erro) => {
-  console.log(erro);
-});
+// importando as rotas
+import checkpointRoutes from "./routes/checkpointRoutes.js";
+import modelagemRoutes from "./routes/modelagemRoutes.js";
+import quizzRoutes from "./routes/quizzRoutes.js";
+import rotaRoutes from "./routes/rotaRoutes.js";
+import usariosRoutes from "./routes/usariosRoutes.js";
 
-connection.query(`Create database if not exists memori;`). then (() => {
-  console.log("O banco de dados está criado!");
-}).catch((error) => {
-  console.log(error);  
-});
-
-// Permitindo receber os dados do formulário
-
-app.use(express.urlencoded({extended : true}));
+// Configurações do Express
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use('/', checkpointRoutes);
+app.use('/', modelagemRoutes);
+app.use('/', quizzRoutes);
+app.use('/', rotaRoutes);
+app.use('/', usariosRoutes);
 
-// Define o EJS como Renderizador de páginas
-app.set("view engine", "ejs");
-// Define o uso da pasta "public" para uso de arquivos estáticos
-app.use(express.static("public"));
+// Iniciando a conexão com o banco de dados do MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/api-thegames")
 
-// Definindo o uso das rotas dos Controllers
-app.use("/", UsuariosController);
-app.use("/", RotasController);
-app.use("/", CheckpointsController);
-app.use("/", ModelagensController);
-app.use("/", QuizzesController);
-
-
-
-// ROTA PRINCIPAL
-app.get("/", function (req, res) {
-  res.render("index");
-});
-
-app.get("/login", function (req,res){
-  res.render("login");
-});
-
-
-// INICIA O SERVIDOR NA PORTA 8080
-const port = 8080;
-app.listen(port, function (erro) {
-  if (erro) {
-    console.log("Ocorreu um erro!");
-  } else {
-    console.log(`Servidor iniciado com sucesso em: http://localhost:${port}`);
+// Rodando a API na porta 4000
+const port = 4000;
+app.listen(port, (error) => {
+  if (error) {
+    console.log(error);
   }
-});
+  console.log(`API rodando em http://localhost:${port}.`);
+}); 
