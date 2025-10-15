@@ -1,31 +1,16 @@
-import Sequelize from "sequelize";
-import connection from "../config/sequelize-config.js";
+import mongoose from "mongoose";
 
-const Checkpoint = connection.define('checkpoints',{
-    nomeCheckpoint:{
-        type: Sequelize.STRING,
-        allowNull: true,
-    },
-    latitudeCheckpoint:{
-        type: Sequelize.FLOAT,
-        allowNull: true, 
-    },
-    longitudeCheckpoint:{
-        type: Sequelize.FLOAT,
-        allowNull: true,
-    },
-    tituloRota:{
-        type: Sequelize.STRING,
-        allowNull: true,
-    },
-    descricaoCheckpoint:{
-        type: Sequelize.TEXT,
-        allowNull: true,
-    },
-    imagemCheckpoint:{
-        type: Sequelize.STRING,
-        allowNull: true,
-    }
+const checkpointSchema = new mongoose.Schema({
+    nomeCheckpoint: String,
+    latitudeCheckpoint: Number,
+    longitudeCheckpoint: Number,
+    tituloRota: String,
+    descricaoCheckpoint: String,
+    imagemCheckpoint: String,
+    qrCodeImagem: [{
+        type: String,
+        ref: 'Transaction'
+    }]
 });
-Checkpoint.sync({force:true});
+const Checkpoint = mongoose.module("Checkpoint", checkpointSchema);
 export default Checkpoint;

@@ -1,31 +1,12 @@
-import Sequelize from "sequelize";
-import connection from "../config/sequelize-config.js";
+import mongoose from "mongoose";
 
-const Rotas = connection.define('Rotas',{
-    tituloRota:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    cidadeLocalizada:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    longitudeRota:{
-        type: Sequelize.FLOAT,
-        allowNull: false, 
-    },
-    latitudeRota:{
-        type: Sequelize.FLOAT,
-        allowNull: false,
-    },
-    imagemCapa:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    descricaoRota:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    }
-})
-Rotas.sync({force:true});
+const rotasSchema = new mongoose.Schema({
+    tituloRota: String,
+    cidadeLocalizada: String,
+    longitudeRota: String,
+    latitudeRota: String,
+    imagemCapa: String,
+    descricaoRota: String,
+});
+const Rotas = mongoose.module("Rotas", rotasSchema);
 export default Rotas;

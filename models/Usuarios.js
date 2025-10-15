@@ -1,28 +1,11 @@
-import Sequelize from "sequelize";
-import connection from "../config/sequelize-config.js";
+import mongoose from "mongoose";
 
-const Usuarios = connection.define('Usuarios',{
-    nome:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    nomeUsuario:{
-        type: Sequelize.STRING,
-        allowNull: false, 
-    },
-    emailUsuario:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    senhaUsuario:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    permissao:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    }
-})
-Usuarios.sync({force:true});
-
-export default Usuarios;
+const usuariosSchema = new mongoose.Schema({
+    nome: String,
+    nomeUsuario: String,
+    emailUsuario: String,
+    senhaUsuario: String,
+    permissao: String,
+});
+const Usuarios = mongoose.module("Usuarios", usuariosSchema);
+export default Modelagens;

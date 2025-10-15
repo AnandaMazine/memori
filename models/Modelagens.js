@@ -1,23 +1,10 @@
-import Sequelize from "sequelize";
-import connection from "../config/sequelize-config.js";
+import mongoose from "mongoose";
 
-const Modelagem = connection.define('Modelagens',{
-    nomeModelagem:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    nomeCidade:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    nomeCheckpoint:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    arquivoModelagem:{
-        type: Sequelize.STRING,
-        allowNull: false, 
-    },
+const modelagensSchema = new mongoose.Schema({
+    nomeModelagem: String,
+    nomeCidade: String,
+    nomeCheckpoint: String,
+    arquivoModelagem: String,
 });
-Modelagem.sync({ force: true });
-export default Modelagem;
+const Modelagens = mongoose.module("Modelagens", modelagensSchema);
+export default Modelagens;

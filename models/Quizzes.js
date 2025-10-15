@@ -1,39 +1,14 @@
-import Sequelize from "sequelize";
-import connection from "../config/sequelize-config.js";
+import mongoose from "mongoose";
 
-const Quizz = connection.define('Quizzes',{
-    pergunta:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    checkpointQuizz:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    alternativaA:{
-        type: Sequelize.STRING,
-        allowNull: false, 
-    },
-    alternativaB:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    alternativaC:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    alternativaD:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    alternativaE:{
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    alternativaCorreta: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    }
-})
-Quizz.sync({ force: true });
-export default Quizz;
+const quizzesSchema = new mongoose.Schema({
+    pergunta: String,
+    checkpointQuizz: String,
+    alternativaA: String,
+    alternativaB: String,
+    alternativaC: String,
+    alternativaD: String,
+    alternativaE: String,
+    alternativaCorreta: String
+});
+const Quizzes = mongoose.module("Quizzes", quizzesSchema);
+export default Quizzes;
