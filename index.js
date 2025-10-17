@@ -1,8 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 const app = express();
+
 // Importando para ser criado no banco 
-import Checkpoint from "./models/Checkpoint.js"
+import Checkpoint from "./models/Checkpoints.js"
 import Modelagend from "./models/Modelagens.js";
 import Quizzes from "./models/Quizzes.js";
 import Rotas from "./models/Rotas.js";
@@ -13,7 +14,7 @@ import checkpointRoutes from "./routes/checkpointRoutes.js";
 import modelagemRoutes from "./routes/modelagemRoutes.js";
 import quizzRoutes from "./routes/quizzRoutes.js";
 import rotaRoutes from "./routes/rotaRoutes.js";
-import usariosRoutes from "./routes/usariosRoutes.js";
+import usuarioRoutes from "./routes/usuarioRoutes.js";
 
 // Configurações do Express
 app.use(express.urlencoded({ extended: false }));
@@ -22,10 +23,10 @@ app.use('/', checkpointRoutes);
 app.use('/', modelagemRoutes);
 app.use('/', quizzRoutes);
 app.use('/', rotaRoutes);
-app.use('/', usariosRoutes);
+app.use('/', usuarioRoutes);
 
 // Iniciando a conexão com o banco de dados do MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/api-thegames")
+mongoose.connect("mongodb://127.0.0.1:27017/api-memoris")
 
 // Rodando a API na porta 4000
 const port = 4000;

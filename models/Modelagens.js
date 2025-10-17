@@ -6,5 +6,5 @@ const modelagensSchema = new mongoose.Schema({
     nomeCheckpoint: String,
     arquivoModelagem: String,
 });
-const Modelagens = mongoose.module("Modelagens", modelagensSchema);
+const Modelagens = mongoose.model("Modelagens", modelagensSchema);
 export default Modelagens;

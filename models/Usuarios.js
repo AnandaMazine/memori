@@ -7,5 +7,5 @@ const usuariosSchema = new mongoose.Schema({
     senhaUsuario: String,
     permissao: String,
 });
-const Usuarios = mongoose.module("Usuarios", usuariosSchema);
-export default Modelagens;
+const Usuarios = mongoose.model("Usuarios", usuariosSchema);
+export default Usuarios;

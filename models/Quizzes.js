@@ -10,5 +10,5 @@ const quizzesSchema = new mongoose.Schema({
     alternativaE: String,
     alternativaCorreta: String
 });
-const Quizzes = mongoose.module("Quizzes", quizzesSchema);
+const Quizzes = mongoose.model("Quizzes", quizzesSchema);
 export default Quizzes;

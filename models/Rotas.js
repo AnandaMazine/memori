@@ -8,5 +8,5 @@ const rotasSchema = new mongoose.Schema({
     imagemCapa: String,
     descricaoRota: String,
 });
-const Rotas = mongoose.module("Rotas", rotasSchema);
+const Rotas = mongoose.model("Rotas", rotasSchema);
 export default Rotas;
