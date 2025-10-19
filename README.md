@@ -47,7 +47,7 @@ Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
 Exemplo de resposta:
 ```
 {
-    "erro": "Erro interno do servidor."
+    "error": "Erro interno do servidor."
 }
 ```
 
@@ -69,7 +69,7 @@ Caso essa resposta aconteça, significa que o ID fornecido é inválido.
 Exemplo de resposta:
 ```
 {
-    "erro": "A ID enviada é inválida. "
+    "error": "A ID enviada é inválida. "
 }
 ```
 
@@ -80,6 +80,84 @@ Exemplo de resposta:
 
 ```
 {
-    "erro": "Erro interno do servidor."
+    "error": "Erro interno do servidor."
+}
+```
+
+### - PUT /game/
+Esse endpoint é responsável por atualizar as informações de um checkpoint específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do checkpoint a ser atualizado.<br>
+nomeCheckpont: Nome do Checkpoint.<br>
+latitudeCheckpoint: Latitude do Checkpoint.<br>
+longitudeCheckpoin: Longitude do Checkpoint.<br>
+tituloRota: Título da Rota que o Checkpoint pertence.<br>
+descricaoCheckpoint: Descrições do Checkpoint.
+
+Exemplo de requisição:
+**inserir resposta**
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, as informações do jogo foram atualizadas com sucesso.
+
+Exemplo de resposta:
+**inserir resposta**
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor. "
+}
+```
+### - GET /checkpoint/
+Esse endpoint é responsável por retornar as informações de um checkpoint específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do checkpoint a ser consultado.
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber as informações do checkpoint solicitado.
+
+Exemplo de resposta:
+**inserir resposta**
+
+##### Não Encontrado! 404
+Caso essa resposta aconteça, significa que o jogo com o ID fornecido não foi encontrado.
+
+Exemplo de resposta:
+```
+{
+    "error": "Checkpoint não encontrado. "
+}
+```
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
 }
 ```
