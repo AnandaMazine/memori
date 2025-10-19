@@ -14,7 +14,16 @@ Nenhum
 Caso essa resposta aconteça, você vai receber a listagem de todos os checkpoints.
 
 Exemplo de resposta:
-**inserir resposta**
+```
+{
+    "nomeCheckpoint": "Edifício K.K.K.K.",
+    "latitudeCheckpoint": "-24.4880",
+    "longitudeCheckpoint": "-47.8445",
+    "tituloRota": "Trilha do Patrimônio",
+    "descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+    "imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 ##### Erro Interno do Servidor! 500
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
@@ -22,14 +31,10 @@ Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
 Exemplo de resposta:
 ```
 {
-"nomeCheckpoint": "Edifício K.K.K.K.",
-"latitudeCheckpoint": "-24.4880",
-"longitudeCheckpoint": "-47.8445",
-"tituloRota": "Trilha do Patrimônio",
-"descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
-"imagemCheckpoint": "kkk_modelo.extensao"
+    "error": "Erro interno do servidor."
 }
 ```
+
 
 ### - POST /checkpoint
 Esse endpoint é responsável por cadastrar um novo checkpoint no banco de dados.
@@ -39,10 +44,20 @@ nomeCheckpont: Nome do Checkpoint.<br>
 latitudeCheckpoint: Latitude do Checkpoint.<br>
 longitudeCheckpoin: Longitude do Checkpoint.<br>
 tituloRota: Título da Rota que o Checkpoint pertence.<br>
-descricaoCheckpoint: Descrições do Checkpoint.
+descricaoCheckpoint: Descrições do Checkpoint.<br>
+imagemCheckpoint: Imagem para simbolizar o checkpoint.
 
 Exemplo de requisição:
-**inserir resposta**
+```
+{
+    "nomeCheckpoint": "Edifício K.K.K.K.",
+    "latitudeCheckpoint": "-24.4880",
+    "longitudeCheckpoint": "-47.8445",
+    "tituloRota": "Trilha do Patrimônio",
+    "descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+    "imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 #### Respostas:
 ##### Criado! 201
@@ -105,14 +120,32 @@ tituloRota: Título da Rota que o Checkpoint pertence.<br>
 descricaoCheckpoint: Descrições do Checkpoint.
 
 Exemplo de requisição:
-**inserir resposta**
+```
+{
+    "nomeCheckpoint": "Edifício K.K.K.K. UPDATE",
+    "latitudeCheckpoint": "-24.4880",
+    "longitudeCheckpoint": "-47.8445",
+    "tituloRota": "Trilha do Patrimônio",
+    "descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+    "imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 #### Respostas:
 ##### OK! 200
 Caso essa resposta aconteça, as informações do jogo foram atualizadas com sucesso.
 
 Exemplo de resposta:
-**inserir resposta**
+```
+{
+    "nomeCheckpoint": "Edifício K.K.K.K.",
+    "latitudeCheckpoint": "-24.4880",
+    "longitudeCheckpoint": "-47.8445",
+    "tituloRota": "Trilha do Patrimônio",
+    "descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+    "imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 ##### Requisição Inválida! 400
 Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
@@ -138,7 +171,16 @@ id: ID do checkpoint a ser consultado.
 Caso essa resposta aconteça, você vai receber as informações do checkpoint solicitado.
 
 Exemplo de resposta:
-**inserir resposta**
+```
+{
+    "nomeCheckpoint": "Edifício K.K.K.K.",
+    "latitudeCheckpoint": "-24.4880",
+    "longitudeCheckpoint": "-47.8445",
+    "tituloRota": "Trilha do Patrimônio",
+    "descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+    "imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 ##### Não Encontrado! 404
 Caso essa resposta aconteça, significa que o jogo com o ID fornecido não foi encontrado.
