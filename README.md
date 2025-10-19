@@ -20,7 +20,16 @@ Exemplo de resposta:
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
 
 Exemplo de resposta:
-**inserir resposta**
+```
+{
+"nomeCheckpoint": "Edifício K.K.K.K.",
+"latitudeCheckpoint": "-24.4880",
+"longitudeCheckpoint": "-47.8445",
+"tituloRota": "Trilha do Patrimônio",
+"descricaoCheckPoint": "Construído em 1912, foi sede de uma empresa japonesa e hoje é símbolo da imigração no Vale do Ribeira."
+"imagemCheckpoint": "kkk_modelo.extensao"
+}
+```
 
 ### - POST /checkpoint
 Esse endpoint é responsável por cadastrar um novo checkpoint no banco de dados.
