@@ -10,7 +10,7 @@ class UsuariosService {
         }   
     }
 
-    async Create(   
+    async Create(
         nome,
         nomeUsuario,
         emailUsuario,
@@ -26,8 +26,10 @@ class UsuariosService {
                 permissao,
             });
             await newUsuario.save();
+            return newUsuario;
         } catch (error) {
             console.log(error);
+            throw error;
         }       
     }
 
@@ -46,6 +48,29 @@ class UsuariosService {
             return Usuarios;
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async getByEmail(email){
+        try {
+            const Usuarios = await Usuarios.findOne({ emailUsuario: email });
+            return Usuarios;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async Update(id, userData) {
+        try {
+            const usuario = await Usuarios.findByIdAndUpdate(
+                id,
+                userData,
+                { new: true }
+            );
+            return usuario;
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
     }
 }

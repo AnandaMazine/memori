@@ -10,12 +10,12 @@ class modelagemService {
     }
   }
 
-  async Create(nomeModelagem, nomeCidade, arquivoModelagens, arquivoQrCode, nomeCheckpoint) {
+  async Create(nomeModelagem, nomeCidade, arquivoModelagem, arquivoQrCode, nomeCheckpoint) {
     try {
       const newModelagem = new Modelagem({
         nomeModelagem,
         nomeCidade,
-        arquivoModelagens,
+        arquivoModelagem,
         arquivoQrCode,
         nomeCheckpoint,
       });
@@ -38,7 +38,7 @@ class modelagemService {
     id,
     nomeModelagem,
     nomeCidade,
-    arquivoModelagens,
+    arquivoModelagem,
     arquivoQrCode,
     nomeCheckpoint,
   ) {
@@ -48,7 +48,7 @@ class modelagemService {
         {
           nomeModelagem,
           nomeCidade,
-          arquivoModelagens,
+          arquivoModelagem,
           arquivoQrCode,
           nomeCheckpoint,
         },
