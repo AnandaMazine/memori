@@ -19,10 +19,10 @@ import usuarioRoutes from "./routes/usuarioRoutes.js";
 // Configurações do Express
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use('/', checkpointRoutes);
-app.use('/', modelagemRoutes);
-app.use('/', quizzRoutes);
-app.use('/', rotaRoutes);
+app.use('/checkpoints', checkpointRoutes);
+app.use('/modelagem', modelagemRoutes);
+app.use('/quizz', quizzRoutes);
+app.use('/rota', rotaRoutes);
 app.use('/usuarios', usuarioRoutes);
 
 // Iniciando a conexão com o banco de dados do MongoDB

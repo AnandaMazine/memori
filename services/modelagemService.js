@@ -34,14 +34,7 @@ class modelagemService {
     }
   }
 
-  async Update(
-    id,
-    nomeModelagem,
-    nomeCidade,
-    arquivoModelagem,
-    arquivoQrCode,
-    nomeCheckpoint,
-  ) {
+  async Update(id,nomeModelagem,nomeCidade,arquivoModelagem,arquivoQrCode,nomeCheckpoint) {
     try {
       const modelagem = await Modelagem.findByIdAndUpdate(
         id,

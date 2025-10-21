@@ -1,22 +1,7 @@
 import Usuarios from "../models/Usuarios.js";
 
 class UsuariosService {
-    async getAll() {
-        try {
-            const Usuarioss = await Usuarios.find();
-            return Usuarioss;
-        } catch (error) {
-            console.log(error);
-        }   
-    }
-
-    async Create(
-        nome,
-        nomeUsuario,
-        emailUsuario,
-        senhaUsuario,
-        permissao
-    ) { 
+    async Create(nome,nomeUsuario,emailUsuario,senhaUsuario,permissao) { 
         try {
             const newUsuario = new Usuarios({
                 nome,   
@@ -26,11 +11,18 @@ class UsuariosService {
                 permissao,
             });
             await newUsuario.save();
-            return newUsuario;
         } catch (error) {
             console.log(error);
-            throw error;
         }       
+    }
+
+    async getOne(email){
+        try {
+            const Usuarios = await Usuarios.findOne({ emailUsuario: emailUsuario });
+            return Usuarios;
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     async Delete(id) {
@@ -51,26 +43,31 @@ class UsuariosService {
         }
     }
 
-    async getByEmail(email){
+    async getAll() {
         try {
-            const Usuarios = await Usuarios.findOne({ emailUsuario: email });
+            const Usuarios = await Usuarios.find();
             return Usuarios;
         } catch (error) {
             console.log(error);
-        }
+        }   
     }
 
-    async Update(id, userData) {
+    async Update(id, nome, nomeUsuario, emailUsuario, senhaUsuario, permissao) {
         try {
             const usuario = await Usuarios.findByIdAndUpdate(
-                id,
-                userData,
+                id, {
+                    nome,
+                    nomeUsuario,
+                    emailUsuario,
+                    senhaUsuario,
+                    permissao
+                },
                 { new: true }
             );
+            console.log(`Usuario com id ${id} atualizado com sucesso!`);
             return usuario;
         } catch (error) {
             console.log(error);
-            throw error;
         }
     }
 }

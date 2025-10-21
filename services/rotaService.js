@@ -1,33 +1,26 @@
-import Rotas from "../models/Rotas.js";
+import Rota from "../models/Rotas.js";
 
-class RotasService {
+class RotaService {
   async getAll() {
     try {
-        const rotas = await Rotas.find();
+        const rotas = await Rota.find();
         return rotas;
     } catch (error) {
         console.log(error);
     }
     }
 
-    async Create(
-        tituloRota,
-        cidadeLocalizada,
-        longitudeRota,
-        latituteRota,
-        imagemCapa,
-        descricaoRota
-    ) { 
+    async Create(tituloRota,cidadeLocalizada,longitudeRota,latituteRota,imagemCapa,descricaoRota) { 
         try {
-            const newRotas = new Rotas({
+            const newRota = new Rota({
                 tituloRota,
                 cidadeLocalizada,
                 longitudeRota,
                 latituteRota,
                 imagemCapa,
-                descricaoRota
+                descricaoRota,
             });
-            await newRotas.save();
+            await newRota.save();
         } catch (error) {
             console.log(error);
         }   
@@ -35,17 +28,8 @@ class RotasService {
 
     async Delete(id) {
         try {
-            await Rotas.findByIdAndDelete(id);   
-            console.log(`Rotas com id ${id} deletada com sucesso!`);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async getOne(id) {
-        try {
-            const rota = await Rotas.findOne({ _id: id });
-            return rota;
+            await Rota.findByIdAndDelete(id);   
+            console.log(`Rota com id ${id} deletada com sucesso!`);
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +44,19 @@ class RotasService {
                 latituteRota,
                 imagemCapa,
                 descricaoRota
-            }, { new: true });
+            }, 
+            { new: true }
+        );
+            console.log(`Rota com id ${id} atualizada com sucesso!`);
+            return rota;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getOne(id) {
+        try {
+            const rota = await Rota.findOne({ _id: id });
             return rota;
         } catch (error) {
             console.log(error);
@@ -68,4 +64,4 @@ class RotasService {
     }
 }
 
-export default new RotasService();
+export default new RotaService();

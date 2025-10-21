@@ -24,7 +24,7 @@ const createQuizz = async (req, res) => {
       alternativaD,
       alternativaCorreta,
     } = req.body;
-    await quizzService.Create({
+    await quizzService.Create(
       pergunta,
       checkpointQuizz,
       alternativaA,
@@ -32,7 +32,7 @@ const createQuizz = async (req, res) => {
       alternativaC,
       alternativaD,
       alternativaCorreta,
-    });
+    );
     res.sendStatus(201);
   } catch (error) {
     console.log(error);

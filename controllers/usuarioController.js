@@ -53,30 +53,24 @@ const deleteUsuario = async (req, res) => {
 
 const updateUsuario = async (req, res) => {
   try {
-    if (ObjectId.isValid(req.params.id)) { 
-      const id = req.params.id;
-      const { 
+    if (ObjectId.isValid(req.params.id)) {
+      const { nome, nomeUsuario, emailUsuario, senhaUsuario, permissao} = req.body;
+      const usuario = await usuarioService.Update(
+        id,
         nome,
         nomeUsuario,
         emailUsuario,
         senhaUsuario,
         permissao,
-      } = req.body;
-      await usuarioService.Update(id, {
-        nome,
-        nomeUsuario,
-        emailUsuario,
-        senhaUsuario,
-        permissao,
-      });
-      res.sendStatus(204);
+      );
+      res.status(200).json({ usuario });
     } else {
-      res.status(400).json({ error: "A ID enviada é invalida" });
+      res.sendStatus(400);
     }
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Erro interno do servidor" });
-  } 
+  }
 };
 
 const getOneUsuario = async (req, res) => {

@@ -22,13 +22,13 @@ const createCheckpoint = async (req, res) => {
       tituloRota,
       descricaoCheckpoint,
     } = req.body;
-    await checkpointService.Create({
+    await checkpointService.Create(
       nomeCheckpoint,
       latitudeCheckpoint,
       longitudeCheckpoint,
       tituloRota,
       descricaoCheckpoint,
-    });
+    );
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
