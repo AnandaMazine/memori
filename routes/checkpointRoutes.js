@@ -7,7 +7,7 @@ import checkpointController from "../controllers/checkpointController.js";
 checkpointRoutes.get("/checkpoints", checkpointController.getAllCheckpoints);
 checkpointRoutes.post("/checkpoints", checkpointController.createCheckpoint);
 checkpointRoutes.delete("/checkpoints/:id", checkpointController.deleteCheckpoint);
-checkpointRoutes.put("checkpoints/:id", checkpointController.updateCheckpoint);
-checkpointRoutes.get("checkpoints/:id", checkpointController.getOneCheckpoint);
+checkpointRoutes.put("/checkpoints/:id", checkpointController.updateCheckpoint);
+checkpointRoutes.get("/checkpoints/:id", checkpointController.getOneCheckpoint);
 
 export default checkpointRoutes;

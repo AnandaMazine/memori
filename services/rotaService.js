@@ -1,9 +1,9 @@
-import Rota from "../models/Rota.js";
+import Rotas from "../models/Rotas.js";
 
-class RotaService {
+class RotasService {
   async getAll() {
     try {
-        const rotas = await Rota.find();
+        const rotas = await Rotas.find();
         return rotas;
     } catch (error) {
         console.log(error);
@@ -19,7 +19,7 @@ class RotaService {
         descricaoRota
     ) { 
         try {
-            const newRota = new Rota({
+            const newRotas = new Rotas({
                 tituloRota,
                 cidadeLocalizada,
                 longitudeRota,
@@ -27,7 +27,7 @@ class RotaService {
                 imagemCapa,
                 descricaoRota
             });
-            await newRota.save();
+            await newRotas.save();
         } catch (error) {
             console.log(error);
         }   
@@ -35,8 +35,8 @@ class RotaService {
 
     async Delete(id) {
         try {
-            await Rota.findByIdAndDelete(id);   
-            console.log(`Rota com id ${id} deletada com sucesso!`);
+            await Rotas.findByIdAndDelete(id);   
+            console.log(`Rotas com id ${id} deletada com sucesso!`);
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +44,23 @@ class RotaService {
 
     async getOne(id) {
         try {
-            const rota = await Rota.findOne({ _id: id });
+            const rota = await Rotas.findOne({ _id: id });
+            return rota;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async Update(id, tituloRotas, cidadeLocalizada, longitudeRotas, latituteRotas, imagemCapa, descricaoRotas) {
+        try {
+            const rota = await Rotas.findByIdAndUpdate(id, {
+                tituloRota,
+                cidadeLocalizada,
+                longitudeRota,
+                latituteRota,
+                imagemCapa,
+                descricaoRota
+            }, { new: true });
             return rota;
         } catch (error) {
             console.log(error);
@@ -52,4 +68,4 @@ class RotaService {
     }
 }
 
-export default new RotaService();
+export default new RotasService();

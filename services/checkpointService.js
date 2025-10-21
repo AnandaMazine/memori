@@ -9,28 +9,28 @@ class checkpointService {
       console.log(error);
     }
   }
-  async Create(
-    nomeCheckpoint,
-    latitudeCheckpoint,
-    longitudeCheckpoint,
-    tituloRota,
-    descricaoCheckpoint,
-    imagemCheckpoint
-  ) {
-    try {
-      const newCheckpoint = new Checkpoint({
-        nomeCheckpoint,
-        latitudeCheckpoint,
-        longitudeCheckpoint,
-        tituloRota,
-        descricaoCheckpoint,
-        imagemCheckpoint,
-      });
-      await newCheckpoint.save();
-    } catch (error) {
-      console.log(error);
-    }
+async Create({
+  nomeCheckpoint,
+  latitudeCheckpoint,
+  longitudeCheckpoint,
+  tituloRota,
+  descricaoCheckpoint,
+  imagemCheckpoint,
+}) {
+  try {
+    const newCheckpoint = new Checkpoint({
+      nomeCheckpoint,
+      latitudeCheckpoint,
+      longitudeCheckpoint,
+      tituloRota,
+      descricaoCheckpoint,
+      imagemCheckpoint,
+    });
+    await newCheckpoint.save();
+  } catch (error) {
+    console.log(error);
   }
+}
 
   async Delete(id) {
     try {

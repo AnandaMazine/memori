@@ -10,13 +10,14 @@ class modelagemService {
     }
   }
 
-  async Create(nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens) {
+  async Create(nomeModelagem, nomeCidade, arquivoModelagens, arquivoQrCode, nomeCheckpoint) {
     try {
       const newModelagem = new Modelagem({
         nomeModelagem,
         nomeCidade,
-        nomeCheckpoint,
         arquivoModelagens,
+        arquivoQrCode,
+        nomeCheckpoint,
       });
       await newModelagem.save();
     } catch (error) {
@@ -37,8 +38,9 @@ class modelagemService {
     id,
     nomeModelagem,
     nomeCidade,
+    arquivoModelagens,
+    arquivoQrCode,
     nomeCheckpoint,
-    arquivoModelagens
   ) {
     try {
       const modelagem = await Modelagem.findByIdAndUpdate(
@@ -46,8 +48,9 @@ class modelagemService {
         {
           nomeModelagem,
           nomeCidade,
-          nomeCheckpoint,
           arquivoModelagens,
+          arquivoQrCode,
+          nomeCheckpoint,
         },
         { new: true }
       );

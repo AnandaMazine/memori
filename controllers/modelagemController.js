@@ -15,13 +15,14 @@ const getAllModelagens = async (req, res) => {
 // Função para criar uma nova Modelagem
 const createModelagem = async (req, res) => {
   try {
-    const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
+    const { nomeModelagem, nomeCidade, arquivoModelagem, arquivoQrCode, nomeCheckpoint } =
       req.body;
     await modelagemService.Create({
       nomeModelagem,
       nomeCidade,
+      arquivoModelagem,
+      arquivoQrCode,
       nomeCheckpoint,
-      arquivoModelagens,
     });
     res.sendStatus(201);
   } catch (error) {
@@ -51,14 +52,15 @@ const updateModelagem = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      const { nomeModelagem, nomeCidade, nomeCheckpoint, arquivoModelagens } =
+      const { nomeModelagem, nomeCidade, arquivoModelagem, arquivoQrCode, nomeCheckpoint } =
         req.body;
       const modelagem = await modelagemService.Update(
         id,
         nomeModelagem,
         nomeCidade,
+        arquivoModelagem,
+        arquivoQrCode,
         nomeCheckpoint,
-        arquivoModelagens
       );
       res.status(200).json({ modelagem });
     } else {

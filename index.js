@@ -26,7 +26,7 @@ app.use('/', rotaRoutes);
 app.use('/', usuarioRoutes);
 
 // Iniciando a conexão com o banco de dados do MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/api-memoris")
+mongoose.connect("mongodb://127.0.0.1:27017/api-memori")
 
 // Rodando a API na porta 4000
 const port = 4000;

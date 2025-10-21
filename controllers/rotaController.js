@@ -1,4 +1,4 @@
-import rotasService from "../services/rotasService.js";
+import rotaService from "../services/rotaService.js";
 import { ObjectId } from "mongodb";
 
 const getAllRotas = async (req, res) => {
@@ -64,6 +64,7 @@ const updateRota = async (req, res) => {
         descricaoRota,
       } = req.body;
       const rotas = await rotaService.Update(
+        id,
         tituloRota,
         cidadeLocalizada,
         longitudeRota,
@@ -71,7 +72,7 @@ const updateRota = async (req, res) => {
         imagemCapa,
         descricaoRota
       );
-      res.status(200).json({ modelagem });
+      res.status(200).json({ rotas });
     } else {
       res.status(400).json({ error: "A ID enviada é invalida" });
     }
@@ -89,7 +90,7 @@ const getOneRotas = async (req, res) => {
       if (!rotas) {
         res.status(400).json({ error: "Rota nao encontrada" });
       } else {
-        res.status(200).json({ modelagem });
+        res.status(200).json({ rotas });
       }
     } else {
       res.status(400).json({ error: "A ID enviada é invalida" });
@@ -100,4 +101,4 @@ const getOneRotas = async (req, res) => {
   }
 };
 
-export default {getAllrotas,createRotas,deleteRotas,updateRotas,getOneRotas};
+export default {getAllRotas,createRota,deleteRota,updateRota,getOneRotas};

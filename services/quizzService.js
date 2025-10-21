@@ -17,7 +17,6 @@ class quizzService {
     alternativaB,
     alternativaC,
     alternativaD,
-    alternativaE,
     alternativaCorreta
   ) {
     try {
@@ -28,7 +27,6 @@ class quizzService {
         alternativaB,
         alternativaC,
         alternativaD,
-        alternativaE,
         alternativaCorreta,
       });
       await newQuizz.save();
@@ -55,4 +53,4 @@ class quizzService {
     }
   }
 }
-export default new QuizzService();
+export default new quizzService();

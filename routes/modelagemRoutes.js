@@ -8,6 +8,6 @@ modelagemRoutes.get("/modelagens", modelagemController.getAllModelagens);
 modelagemRoutes.post("/modelagens", modelagemController.createModelagem);
 modelagemRoutes.delete("/modelagens/:id", modelagemController.deleteModelagem);
 modelagemRoutes.put("/modelagens/:id", modelagemController.updateModelagem);
-modelagemRoutes.get("modelagens/:id", modelagemController.getOne);
+modelagemRoutes.get("/modelagens/:id", modelagemController.getOneModelagem);
 
 export default modelagemRoutes;

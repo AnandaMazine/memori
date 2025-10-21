@@ -22,7 +22,6 @@ const createQuizz = async (req, res) => {
       alternativaB,
       alternativaC,
       alternativaD,
-      alternativaE,
       alternativaCorreta,
     } = req.body;
     await quizzService.Create({
@@ -32,7 +31,6 @@ const createQuizz = async (req, res) => {
       alternativaB,
       alternativaC,
       alternativaD,
-      alternativaE,
       alternativaCorreta,
     });
     res.sendStatus(201);
@@ -70,7 +68,6 @@ const updateQuizz = async (req, res) => {
         alternativaB,
         alternativaC,
         alternativaD,
-        alternativaE,
         alternativaCorreta,
       } = req.body;
       const quizz = await quizzService.Update(
@@ -80,7 +77,6 @@ const updateQuizz = async (req, res) => {
         alternativaB,
         alternativaC,
         alternativaD,
-        alternativaE,
         alternativaCorreta
       );
       res.status(200).json({ modelagem });

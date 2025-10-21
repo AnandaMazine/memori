@@ -1,10 +1,10 @@
-import usuario from "../models/usuario.js";
+import Usuarios from "../models/Usuarios.js";
 
-class usuarioService {
+class UsuariosService {
     async getAll() {
         try {
-            const usuarios = await usuario.find();
-            return usuarios;
+            const Usuarioss = await Usuarios.find();
+            return Usuarioss;
         } catch (error) {
             console.log(error);
         }   
@@ -18,7 +18,7 @@ class usuarioService {
         permissao
     ) { 
         try {
-            const newUsuario = new usuario({
+            const newUsuario = new Usuarios({
                 nome,   
                 nomeUsuario,
                 emailUsuario,
@@ -33,7 +33,7 @@ class usuarioService {
 
     async Delete(id) {
         try {
-            await usuario.findByIdAndDelete(id);   
+            await Usuarios.findByIdAndDelete(id);   
             console.log(`Usuario com id ${id} deletada com sucesso!`);
         } catch (error) {
             console.log(error);
@@ -42,12 +42,12 @@ class usuarioService {
 
     async getOne(id) {
         try {
-            const usuario = await usuario.findOne({ _id: id });    
-            return usuario;
+            const Usuarios = await Usuarios.findOne({ _id: id });    
+            return Usuarios;
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-export default new usuarioService();
+export default new UsuariosService();

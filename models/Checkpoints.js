@@ -7,10 +7,6 @@ const checkpointSchema = new mongoose.Schema({
     tituloRota: String,
     descricaoCheckpoint: String,
     imagemCheckpoint: String,
-    qrCodeImagem: [{
-        type: String,
-        ref: 'Qrcode'
-    }]
 });
 const Checkpoint = mongoose.model("Checkpoint", checkpointSchema);
 export default Checkpoint;

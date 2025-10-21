@@ -7,7 +7,6 @@ const quizzesSchema = new mongoose.Schema({
     alternativaB: String,
     alternativaC: String,
     alternativaD: String,
-    alternativaE: String,
     alternativaCorreta: String
 });
 const Quizzes = mongoose.model("Quizzes", quizzesSchema);
