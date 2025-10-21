@@ -108,7 +108,7 @@ Exemplo de resposta:
 }
 ```
 
-### - PUT /game/
+### - PUT /checkpoint/
 Esse endpoint é responsável por atualizar as informações de um checkpoint específico pelo seu ID.
 
 #### Parâmetros:
