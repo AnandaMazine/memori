@@ -55,8 +55,8 @@ const deleteCheckpoint = async (req, res) => {
 // Funçãpo para atualizar checkpoints
 const updateCheckpoint = async (req, res) => {
   try {
-    if (ObjectId.isValid(req.params.id)) {
-      const id = req.params.id;
+    const id = req.params.id;
+    if (ObjectId.isValid(id)) {
       const {
         nomeCheckpoint,
         latitudeCheckpoint,
@@ -74,7 +74,7 @@ const updateCheckpoint = async (req, res) => {
       );
       res.status(200).json({ checkpoint });
     } else {
-      res.sendStatus(400);
+      res.status(400).json({ error: "A ID enviada é inválida. " })  ;
     }
   } catch (error) {
     console.log(error);
@@ -91,7 +91,7 @@ const getOneCheckpoint = async (req, res) => {
       if (!checkpoint) {
         res.status(404).json({ error: "Checkpoint não encontrado." });
       } else {
-        res.sendStatus(200).json({ checkpoint });
+        res.status(200).json({ checkpoint });
       }
     } else {
       res.status(400).json({ error: "A ID enviada é inválida. " });

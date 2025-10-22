@@ -9,6 +9,7 @@ class checkpointService {
       console.log(error);
     }
   }
+  
 async Create({
   nomeCheckpoint,
   latitudeCheckpoint,

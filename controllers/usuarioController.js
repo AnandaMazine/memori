@@ -53,6 +53,7 @@ const deleteUsuario = async (req, res) => {
 
 const updateUsuario = async (req, res) => {
   try {
+    const id = req.params.id;
     if (ObjectId.isValid(req.params.id)) {
       const { nome, nomeUsuario, emailUsuario, senhaUsuario, permissao} = req.body;
       const usuario = await usuarioService.Update(
@@ -73,24 +74,6 @@ const updateUsuario = async (req, res) => {
   }
 };
 
-const getOneUsuario = async (req, res) => {
-  try {
-    if (ObjectId.isValid(req.params.id)) {
-      const id = req.params.id;
-      const usuario = await usuarioService.getOne(id);
-      if(!usuario){
-        res.status(404).json({ error: "Usuario não encontrado" });
-      } else {
-        res.status(200).json({ usuario });
-      }
-  } else {
-      res.status(400).json({ error: "A ID enviada é invalida" });
-  }
-} catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Erro interno do servidor" });
-  }
-};
 
 const LoginUsuario = async (req, res) => {
   try {
@@ -126,5 +109,24 @@ const LoginUsuario = async (req, res) => {
     res.status(500).json({ error: "Erro interno do servidor" });
   }
 };
+
+ const getOneUsuario = async (req, res) => {
+    try {
+      if (ObjectId.isValid(req.params.id)) {
+        const id = req.params.id;
+        const usuario = await usuarioService.getOne(id);
+        if (!usuario) {
+          res.status(404).json({ error: "Usuário não encontrado." });
+        } else {
+          res.status(200).json({ usuario });
+        } 
+      } else {
+        res.status(400).json({ error: "A ID enviada é invalida" });
+      }
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    }
+  };
 
 export default {getAllUsuarios, createUsuario, deleteUsuario, updateUsuario, getOneUsuario, LoginUsuario};

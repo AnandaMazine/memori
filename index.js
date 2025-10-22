@@ -12,16 +12,16 @@ import Usuarios from "./models/Usuarios.js";
 // importando as rotas
 import checkpointRoutes from "./routes/checkpointRoutes.js";
 import modelagemRoutes from "./routes/modelagemRoutes.js";
-import quizzRoutes from "./routes/quizzRoutes.js";
+import quizRoutes from "./routes/quizRoutes.js";
 import rotaRoutes from "./routes/rotaRoutes.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 
 // Configurações do Express
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use('/checkpoints', checkpointRoutes);
+app.use('/checkpoint', checkpointRoutes);
 app.use('/modelagem', modelagemRoutes);
-app.use('/quizz', quizzRoutes);
+app.use('/quiz', quizRoutes);
 app.use('/rota', rotaRoutes);
 app.use('/usuarios', usuarioRoutes);
 

@@ -1,32 +1,32 @@
-import quizzService from "../services/quizzService.js";
+import quizService from "../services/quizService.js";
 import { ObjectId } from "mongodb";
-
+ 
 //Função para listar todos os Quizzes
 const getAllQuizzes = async (req, res) => {
   try {
-    const quizzes = await quizzService.getAll();
+    const quizzes = await quizService.getAll();
     res.status(200).json({ quizzes: quizzes });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
-
+ 
 // Função para criar um Quizz
-const createQuizz = async (req, res) => {
+const createQuiz = async (req, res) => {
   try {
     const {
       pergunta,
-      checkpointQuizz,
+      checkpointQuiz,
       alternativaA,
       alternativaB,
       alternativaC,
       alternativaD,
       alternativaCorreta,
     } = req.body;
-    await quizzService.Create(
+    await quizService.Create(
       pergunta,
-      checkpointQuizz,
+      checkpointQuiz,
       alternativaA,
       alternativaB,
       alternativaC,
@@ -39,13 +39,13 @@ const createQuizz = async (req, res) => {
     res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
-
+ 
 // Função para deletar um Quizz
-const deleteQuizz = async (req, res) => {
+const deleteQuiz = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      await quizzService.Delete(id);
+      await quizService.Delete(id);
       res.sendStatus(204);
     } else {
       res.status(400).json({ error: "A ID enviada é inválida. " });
@@ -55,31 +55,32 @@ const deleteQuizz = async (req, res) => {
     res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
-
+ 
 // Função para atualizar Quizz
-const updateQuizz = async (req, res) => {
+const updateQuiz = async (req, res) => {
   try {
-    if (ObjectId.isValid(req.params.id)) {
-      const id = req.params.id;
+    const id = req.params.id;
+    if (ObjectId.isValid(id)) {
       const {
         pergunta,
-        checkpointQuizz,
+        checkpointQuiz,
         alternativaA,
         alternativaB,
         alternativaC,
         alternativaD,
         alternativaCorreta,
       } = req.body;
-      const quizz = await quizzService.Update(
+      const quiz = await quizService.Update(
+        id,
         pergunta,
-        checkpointQuizz,
+        checkpointQuiz,
         alternativaA,
         alternativaB,
         alternativaC,
         alternativaD,
         alternativaCorreta
       );
-      res.status(200).json({ modelagem });
+      res.status(200).json({ quiz });
     } else {
       res.status(400).json({ error: "A ID enviada é inválida. " });
     }
@@ -88,16 +89,16 @@ const updateQuizz = async (req, res) => {
     res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
-
-const getOneQuizz = async (req, res) => {
+ 
+const getOneQuiz = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      const quizz = await quizzService.getOne(id);
-      if (!quizz) {
-        res.status(400).json({ error: "Quizz não encontrado. " });
+      const quiz = await quizService.getOne(id);
+      if (!quiz) {
+        res.status(400).json({ error: "Quiz não encontrado. " });
       } else {
-        res.statys(200).json({ modelagem });
+        res.status(200).json({ quiz });
       }
     } else {
       res.status(400).json({ error: "A ID enviada é inválida." });
@@ -109,8 +110,9 @@ const getOneQuizz = async (req, res) => {
 };
 export default {
   getAllQuizzes,
-  createQuizz,
-  deleteQuizz,
-  updateQuizz,
-  getOneQuizz,
+  createQuiz,
+  deleteQuiz,
+  updateQuiz,
+  getOneQuiz,
 };
+ 
