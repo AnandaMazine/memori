@@ -800,7 +800,7 @@ Exemplo de resposta:
     "error": "Erro interno do servidor. "
 }
 ```
-### - GET /rota
+### - GET /rota/
 Esse endpoint é responsável por retornar as informações de uma rota específica pelo seu ID.
 
 #### Parâmetros:
@@ -824,6 +824,211 @@ Exemplo de resposta:
 
 ##### Não Encontrado! 404
 Caso essa resposta aconteça, significa que a modelagem com o ID fornecido não foi encontrada.
+
+Exemplo de resposta:
+```
+{
+    "error": "Checkpoint não encontrado. "
+}
+```
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+## Endpoints de Usuários
+### GET /usuário
+Esse endpoint é responsável por retornar a listagem de todos os usuários cadastrados no banco de dados.
+
+#### Parâmetros:
+Nenhum
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber a listagem de todos os usuários.
+
+Exemplo de resposta:
+```
+{
+  "nome": "Ana Paula",
+  "nomeUsuario": "ana.paula",
+  "emailUsuario": "ana@email.com",
+  "senhaUsuario": "*****",
+  "permissao": "Administrador"
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+
+### - POST /usuario
+Esse endpoint é responsável por cadastrar um novo usuário no banco de dados.
+
+#### Parâmetros:
+nome: Nome do Usuário.<br>
+nomeUsuario: Apelido/Nick do Usuário.<br>
+emailUsuario: E-mail do Usuário.<br>
+senhaUsuario: Senha do Usuário.<br>
+permissao: Tipo de Permissão que o Usuário possui.<br>
+
+Exemplo de requisição:
+```
+{
+  "nome": "Ana Paula",
+  "nomeUsuario": "ana.paula",
+  "emailUsuario": "ana@email.com",
+  "senhaUsuario": "*****",
+  "permissao": "Administrador"
+}
+```
+
+#### Respostas:
+##### Criado! 201
+Caso essa resposta aconteça, o novo usuário foi criado com sucesso.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - DELETE /usuario
+Esse endpoint é responsável por deletar um usuário específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do usuário a ser deletado.
+
+#### Respostas:
+##### Sem Conteúdo! 204
+Caso essa resposta aconteça, o usuário foi deletado com sucesso e não há conteúdo para retornar.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - PUT /usuario/
+Esse endpoint é responsável por atualizar as informações de um usuário específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do Usuário a ser atualizado.<br>
+nome: Nome do Usuário.<br>
+nomeUsuario: Apelido/Nick do Usuário.<br>
+emailUsuario: E-mail do Usuário.<br>
+senhaUsuario: Senha do Usuário.<br>
+permissao: Tipo de Permissão que o Usuário possui.<br>
+
+Exemplo de requisição:
+```
+{
+  "nome": "Ana Paula",
+  "nomeUsuario": "ana.paula",
+  "emailUsuario": "ana@email.com",
+  "senhaUsuario": "*****",
+  "permissao": "Administrador"
+}
+```
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, as informações do usuário foram atualizadas com sucesso.
+
+Exemplo de resposta:
+```
+{
+  "nome": "Ana Paula",
+  "nomeUsuario": "ana.paula",
+  "emailUsuario": "ana@email.com",
+  "senhaUsuario": "*****",
+  "permissao": "Administrador"
+}
+```
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor. "
+}
+```
+### - GET /usuario/
+Esse endpoint é responsável por retornar as informações de um usuário específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do usuário a ser consultado.
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber as informações do usuário solicitado.
+
+Exemplo de resposta:
+```
+{
+  "nome": "Ana Paula",
+  "nomeUsuario": "ana.paula",
+  "emailUsuario": "ana@email.com",
+  "senhaUsuario": "*****",
+  "permissao": "Administrador"
+}
+```
+
+##### Não Encontrado! 404
+Caso essa resposta aconteça, significa que o usuário com o ID fornecido não foi encontrado.
 
 Exemplo de resposta:
 ```
