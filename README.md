@@ -2,7 +2,7 @@
 
 Esta API é utilizada para gerenciar o sistema MEMORI, permitindo que administradores realizem operações de CRUD (criar, ler, atualizar e deletar) por meio da página web.
 
-## Endpoints
+## Endpoints de Checkpoints
 ### GET /checkpoint
 Esse endpoint é responsável por retornar a listagem de todos os checkpoints cadastrados no banco de dados.
 
@@ -61,7 +61,7 @@ Exemplo de requisição:
 
 #### Respostas:
 ##### Criado! 201
-Caso essa resposta aconteça, o novo jogo foi criado com sucesso.
+Caso essa resposta aconteça, o novo checkpoint foi criado com sucesso.
 
 Exemplo de resposta: Nenhum conteúdo retornado.
 
@@ -133,7 +133,7 @@ Exemplo de requisição:
 
 #### Respostas:
 ##### OK! 200
-Caso essa resposta aconteça, as informações do jogo foram atualizadas com sucesso.
+Caso essa resposta aconteça, as informações do checkpoint foram atualizadas com sucesso.
 
 Exemplo de resposta:
 ```
@@ -183,7 +183,647 @@ Exemplo de resposta:
 ```
 
 ##### Não Encontrado! 404
-Caso essa resposta aconteça, significa que o jogo com o ID fornecido não foi encontrado.
+Caso essa resposta aconteça, significa que o checkpoint com o ID fornecido não foi encontrado.
+
+Exemplo de resposta:
+```
+{
+    "error": "Checkpoint não encontrado. "
+}
+```
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+## Endpoints de Modelagens
+### GET /modelagem
+Esse endpoint é responsável por retornar a listagem de todos as modelagens cadastrados no banco de dados.
+
+#### Parâmetros:
+Nenhum
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber a listagem de todos as modelagens.
+
+Exemplo de resposta:
+```
+{
+  "idModelagem": 1,
+  "nomeModelagem": "KKKK_Modelo3D",
+  "nomeCidade": "Registro",
+  "arquivoModelagem": "kkk_modelo.glb",
+  "arquivoQrCode": "qrcode.extensao",
+  "nomeCheckpoint": "Galpão de armazenamento"
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+
+### - POST /modelagens
+Esse endpoint é responsável por cadastrar uma nova modelagem no banco de dados.
+
+#### Parâmetros:
+nomeModelagem: Nome da Modelagem.<br>
+nomeCidade: Cidade da Modelagem.<br>
+arquivoModelagem: Arquivo da modelagem<br>
+arquivoQrCode: Arquivo do QR Code<br>
+nomeCheckpont: Nome do Checkpoint.<br>
+
+Exemplo de requisição:
+```
+{
+  "nomeModelagem": "KKKK_Modelo3D",
+  "nomeCidade": "Registro",
+  "arquivoModelagem": "kkk_modelo.glb",
+  "arquivoQrCode": "qrcode.extensao",
+  "nomeCheckpoint": "Galpão de armazenamento"
+}
+```
+
+#### Respostas:
+##### Criado! 201
+Caso essa resposta aconteça, uma nova modelagem foi criada com sucesso.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - DELETE /modelagem
+Esse endpoint é responsável por deletar uma modelagem específica pelo seu ID.
+
+#### Parâmetros:
+id: ID da modelagem a ser deletada.
+
+#### Respostas:
+##### Sem Conteúdo! 204
+Caso essa resposta aconteça, a modelagem foi deletado com sucesso e não há conteúdo para retornar.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - PUT /modelagem/
+Esse endpoint é responsável por atualizar as informações de uma modelagem específica pelo seu ID.
+
+#### Parâmetros:
+idModelagem: ID da modelagem a ser atualizada.<br>
+nomeModelagem: Nome da Modelagem.<br>
+nomeCidade: Cidade da Modelagem.<br>
+arquivoModelagem: Arquivo da modelagem<br>
+arquivoQrCode: Arquivo do QR Code<br>
+nomeCheckpont: Nome do Checkpoint.<br>
+
+Exemplo de requisição:
+```
+{
+  "idModelagem": 1,
+  "nomeModelagem": "KKKK_Modelo3D",
+  "nomeCidade": "Registro",
+  "arquivoModelagem": "kkk_modelo.glb",
+  "arquivoQrCode": "qrcode.extensao",
+  "nomeCheckpoint": "Galpão de armazenamento"
+}
+```
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, as informações da modelagem foram atualizadas com sucesso.
+
+Exemplo de resposta:
+```
+{
+  "idModelagem": 1,
+  "nomeModelagem": "KKKK_Modelo3D",
+  "nomeCidade": "Registro",
+  "arquivoModelagem": "kkk_modelo.glb",
+  "arquivoQrCode": "qrcode.extensao",
+  "nomeCheckpoint": "Galpão de armazenamento"
+}
+```
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor. "
+}
+```
+### - GET /modelagem/
+Esse endpoint é responsável por retornar as informações de uma modelagem específica pelo seu ID.
+
+#### Parâmetros:
+id: ID da modelagem a ser consultada.
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber as informações da modelagem solicitada.
+
+Exemplo de resposta:
+```
+{
+  "idModelagem": 1,
+  "nomeModelagem": "KKKK_Modelo3D",
+  "nomeCidade": "Registro",
+  "arquivoModelagem": "kkk_modelo.glb",
+  "arquivoQrCode": "qrcode.extensao",
+  "nomeCheckpoint": "Galpão de armazenamento"
+}
+```
+
+##### Não Encontrado! 404
+Caso essa resposta aconteça, significa que a modelagem com o ID fornecido não foi encontrada.
+
+Exemplo de resposta:
+```
+{
+    "error": "Checkpoint não encontrado. "
+}
+```
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+## Endpoints de Quiz
+### GET /quiz
+Esse endpoint é responsável por retornar a listagem de todos os quizzes cadastrados no banco de dados.
+
+#### Parâmetros:
+Nenhum
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber a listagem de todos os quizzes.
+
+Exemplo de resposta:
+```
+{
+  "idQuiz": 1,
+  "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
+  "checkpointQuiz": "Insira o Cp Quiz aqui.",
+  "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
+  "alternativaB": "Peças e componentes de máquinas pesadas, utilizados na construção civil e industrial.",
+  "alternativaC": "Produtos químicos e farmacêuticos, como insumos para indústrias locais.",
+  "alternativaD": "Madeira e derivados, especialmente para uso na construção civil e no setor moveleiro.",
+  "alternativaCorreta": "Insira a alternativa correta aqui."
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - POST /quiz
+Esse endpoint é responsável por cadastrar um novo quiz no banco de dados.
+
+#### Parâmetros:
+  pergunta: Pergunta do quiz a ser cadastrado,<br>
+  checkpointQuiz: Checkpoint do Quiz a ser cadastrado,<br>
+  alternativaA: Alternativa A do quiz,<br>
+  alternativaB: Alternativa B do quiz,<br>
+  alternativaC: Alternativa C do quiz,<br>
+  alternativaD: Alternativa D do quiz,<br>
+  alternativaCorreta: Alternativa Correta do quiz.<br>
+
+Exemplo de requisição:
+```
+{
+  "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
+  "checkpointQuiz": "Insira o Cp Quiz aqui.",
+  "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
+  "alternativaB": "Peças e componentes de máquinas pesadas, utilizados na construção civil e industrial.",
+  "alternativaC": "Produtos químicos e farmacêuticos, como insumos para indústrias locais.",
+  "alternativaD": "Madeira e derivados, especialmente para uso na construção civil e no setor moveleiro.",
+  "alternativaCorreta": "Insira a alternativa correta aqui."
+}
+```
+
+#### Respostas:
+##### Criado! 201
+Caso essa resposta aconteça, o novo quiz foi criado com sucesso.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - DELETE /quiz
+Esse endpoint é responsável por deletar um quiz específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do quiz a ser deletado.
+
+#### Respostas:
+##### Sem Conteúdo! 204
+Caso essa resposta aconteça, o quiz foi deletado com sucesso e não há conteúdo para retornar.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - PUT /quiz/
+Esse endpoint é responsável por atualizar as informações de um quiz específico pelo seu ID.
+
+#### Parâmetros:
+  pergunta: Pergunta do quiz a ser cadastrado,<br>
+  checkpointQuiz: Checkpoint do Quiz a ser cadastrado,<br>
+  alternativaA: Alternativa A do quiz,<br>
+  alternativaB: Alternativa B do quiz,<br>
+  alternativaC: Alternativa C do quiz,<br>
+  alternativaD: Alternativa D do quiz,<br>
+  alternativaCorreta: Alternativa Correta do quiz.<br>
+
+Exemplo de requisição:
+```
+{
+  "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
+  "checkpointQuiz": "Insira o Cp Quiz aqui.",
+  "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
+  "alternativaB": "Peças e componentes de máquinas pesadas, utilizados na construção civil e industrial.",
+  "alternativaC": "Produtos químicos e farmacêuticos, como insumos para indústrias locais.",
+  "alternativaD": "Madeira e derivados, especialmente para uso na construção civil e no setor moveleiro.",
+  "alternativaCorreta": "Insira a alternativa correta aqui."
+}
+```
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, as informações do quiz foram atualizadas com sucesso.
+
+Exemplo de resposta:
+```
+{
+  "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
+  "checkpointQuiz": "Insira o Cp Quiz aqui.",
+  "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
+  "alternativaB": "Peças e componentes de máquinas pesadas, utilizados na construção civil e industrial.",
+  "alternativaC": "Produtos químicos e farmacêuticos, como insumos para indústrias locais.",
+  "alternativaD": "Madeira e derivados, especialmente para uso na construção civil e no setor moveleiro.",
+  "alternativaCorreta": "Insira a alternativa correta aqui."
+}
+```
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor. "
+}
+```
+### - GET /quiz/
+Esse endpoint é responsável por retornar as informações de um quiz específico pelo seu ID.
+
+#### Parâmetros:
+id: ID do quiz a ser consultado.
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber as informações do quiz solicitado.
+
+Exemplo de resposta:
+```
+{
+  "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
+  "checkpointQuiz": "Insira o Cp Quiz aqui.",
+  "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
+  "alternativaB": "Peças e componentes de máquinas pesadas, utilizados na construção civil e industrial.",
+  "alternativaC": "Produtos químicos e farmacêuticos, como insumos para indústrias locais.",
+  "alternativaD": "Madeira e derivados, especialmente para uso na construção civil e no setor moveleiro.",
+  "alternativaCorreta": "Insira a alternativa correta aqui."
+}
+```
+
+##### Não Encontrado! 404
+Caso essa resposta aconteça, significa que o quiz com o ID fornecido não foi encontrado.
+
+Exemplo de resposta:
+```
+{
+    "error": "Checkpoint não encontrado. "
+}
+```
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+## Endpoints de Rotas
+### GET /rota
+Esse endpoint é responsável por retornar a listagem de todos as rotas cadastrados no banco de dados.
+
+#### Parâmetros:
+Nenhum
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber a listagem de todos as rotas.
+
+Exemplo de resposta:
+```
+{
+  "idRota": 1,
+  "tituloRota": "Trilha do Patrimônio",
+  "cidadeLocalizada": "Registro",
+  "latitudeRota": -24.4872,
+  "longitudeRota": -47.8440,
+  "imagemCapa": "kkk_capa.jpg",
+  "descricaoRota": "Trilha educativa pelos principais pontos históricos de Registro, iniciando pelo Edifício K.K.K.K."
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+
+### - POST /rotas
+Esse endpoint é responsável por cadastrar uma nova rota no banco de dados.
+
+#### Parâmetros:
+tituloRota: Título da Rota,<br>
+cidadeLocalizada": Cidade a qual a rota está localizada,<br>
+latitudeRota": Latitude da Rota,<br>
+longitudeRota: Longitude da Rota,<br>
+imagemCapa": Imagem Capa da Rota,<br>
+descricaoRota": Pequena descrição da Rota, <br>
+
+Exemplo de requisição:
+```
+{
+  "tituloRota": "Trilha do Patrimônio",
+  "cidadeLocalizada": "Registro",
+  "latitudeRota": -24.4872,
+  "longitudeRota": -47.8440,
+  "imagemCapa": "kkk_capa.jpg",
+  "descricaoRota": "Trilha educativa pelos principais pontos históricos de Registro, iniciando pelo Edifício K.K.K.K."
+}
+```
+
+#### Respostas:
+##### Criado! 201
+Caso essa resposta aconteça, uma nova rota foi criada com sucesso.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - DELETE /rota
+Esse endpoint é responsável por deletar uma rota específica pelo seu ID.
+
+#### Parâmetros:
+id: ID da rota a ser deletada.
+
+#### Respostas:
+##### Sem Conteúdo! 204
+Caso essa resposta aconteça, a rota foi deletado com sucesso e não há conteúdo para retornar.
+
+Exemplo de resposta: Nenhum conteúdo retornado.
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido.
+
+Exemplo de resposta:
+```
+{
+    "error": "A ID enviada é inválida. "
+}
+```
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor."
+}
+```
+
+### - PUT /rota/
+Esse endpoint é responsável por atualizar as informações de uma rota específica pelo seu ID.
+
+#### Parâmetros:
+idRota: ID da Rota a ser atualizada.<br>
+tituloRota: Título da Rota.<br>
+cidadeLocalizada": Cidade a qual a rota está localizada.<br>
+latitudeRota": Latitude da Rota.<br>
+longitudeRota: Longitude da Rota.<br>
+imagemCapa": Imagem Capa da Rota.br>
+descricaoRota": Pequena descrição da Rota.<br>
+
+Exemplo de requisição:
+```
+{
+  "tituloRota": "Trilha do Patrimônio",
+  "cidadeLocalizada": "Registro",
+  "latitudeRota": -24.4872,
+  "longitudeRota": -47.8440,
+  "imagemCapa": "kkk_capa.jpg",
+  "descricaoRota": "Trilha educativa pelos principais pontos históricos de Registro, iniciando pelo Edifício K.K.K.K."
+}
+```
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, as informações da rota foram atualizadas com sucesso.
+
+Exemplo de resposta:
+```
+{
+  "tituloRota": "Trilha do Patrimônio",
+  "cidadeLocalizada": "Registro",
+  "latitudeRota": -24.4872,
+  "longitudeRota": -47.8440,
+  "imagemCapa": "kkk_capa.jpg",
+  "descricaoRota": "Trilha educativa pelos principais pontos históricos de Registro, iniciando pelo Edifício K.K.K.K."
+}
+```
+
+##### Requisição Inválida! 400
+Caso essa resposta aconteça, significa que o ID fornecido é inválido ou a requisição contém dados malformados.
+
+##### Erro Interno do Servidor! 500
+Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor.
+
+Exemplo de resposta:
+
+```
+{
+    "error": "Erro interno do servidor. "
+}
+```
+### - GET /rota
+Esse endpoint é responsável por retornar as informações de uma rota específica pelo seu ID.
+
+#### Parâmetros:
+id: ID da rota a ser consultada.
+
+#### Respostas:
+##### OK! 200
+Caso essa resposta aconteça, você vai receber as informações da rota solicitada.
+
+Exemplo de resposta:
+```
+{
+  "tituloRota": "Trilha do Patrimônio",
+  "cidadeLocalizada": "Registro",
+  "latitudeRota": -24.4872,
+  "longitudeRota": -47.8440,
+  "imagemCapa": "kkk_capa.jpg",
+  "descricaoRota": "Trilha educativa pelos principais pontos históricos de Registro, iniciando pelo Edifício K.K.K.K."
+}
+```
+
+##### Não Encontrado! 404
+Caso essa resposta aconteça, significa que a modelagem com o ID fornecido não foi encontrada.
 
 Exemplo de resposta:
 ```
