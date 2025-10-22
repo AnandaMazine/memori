@@ -3,7 +3,7 @@
 Esta API é utilizada para gerenciar o sistema MEMORI, permitindo que administradores realizem operações de CRUD (criar, ler, atualizar e deletar) por meio da página web.
 
 ## Endpoints de Checkpoints
-### GET /checkpoint
+### GET /checkpoints
 Esse endpoint é responsável por retornar a listagem de todos os checkpoints cadastrados no banco de dados.
 
 #### Parâmetros:
@@ -35,14 +35,13 @@ Exemplo de resposta:
 }
 ```
 
-
 ### - POST /checkpoint
 Esse endpoint é responsável por cadastrar um novo checkpoint no banco de dados.
 
 #### Parâmetros:
 nomeCheckpont: Nome do Checkpoint.<br>
 latitudeCheckpoint: Latitude do Checkpoint.<br>
-longitudeCheckpoin: Longitude do Checkpoint.<br>
+longitudeCheckpoint: Longitude do Checkpoint.<br>
 tituloRota: Título da Rota que o Checkpoint pertence.<br>
 descricaoCheckpoint: Descrições do Checkpoint.<br>
 imagemCheckpoint: Imagem para simbolizar o checkpoint.
@@ -115,7 +114,7 @@ Esse endpoint é responsável por atualizar as informações de um checkpoint es
 id: ID do checkpoint a ser atualizado.<br>
 nomeCheckpont: Nome do Checkpoint.<br>
 latitudeCheckpoint: Latitude do Checkpoint.<br>
-longitudeCheckpoin: Longitude do Checkpoint.<br>
+longitudeCheckpoint: Longitude do Checkpoint.<br>
 tituloRota: Título da Rota que o Checkpoint pertence.<br>
 descricaoCheckpoint: Descrições do Checkpoint.
 
@@ -214,7 +213,7 @@ Exemplo de resposta:
 ```
 
 ## Endpoints de Modelagens
-### GET /modelagem
+### GET /modelagens
 Esse endpoint é responsável por retornar a listagem de todos as modelagens cadastrados no banco de dados.
 
 #### Parâmetros:
@@ -235,7 +234,6 @@ Exemplo de resposta:
   "nomeCheckpoint": "Galpão de armazenamento"
 }
 ```
-
 ##### Erro Interno do Servidor! 500
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
 
@@ -245,15 +243,13 @@ Exemplo de resposta:
     "error": "Erro interno do servidor."
 }
 ```
-
-
-### - POST /modelagens
+### - POST /modelagem
 Esse endpoint é responsável por cadastrar uma nova modelagem no banco de dados.
 
 #### Parâmetros:
 nomeModelagem: Nome da Modelagem.<br>
 nomeCidade: Cidade da Modelagem.<br>
-arquivoModelagem: Arquivo da modelagem<br>
+arquivoModelagem: Arquivo da modelagem.<br>
 arquivoQrCode: Arquivo do QR Code<br>
 nomeCheckpont: Nome do Checkpoint.<br>
 
@@ -284,7 +280,7 @@ Exemplo de resposta:
 }
 ```
 
-### - DELETE /modelagem
+### - DELETE /modelagem/
 Esse endpoint é responsável por deletar uma modelagem específica pelo seu ID.
 
 #### Parâmetros:
@@ -292,7 +288,7 @@ id: ID da modelagem a ser deletada.
 
 #### Respostas:
 ##### Sem Conteúdo! 204
-Caso essa resposta aconteça, a modelagem foi deletado com sucesso e não há conteúdo para retornar.
+Caso essa resposta aconteça, a modelagem foi deletada com sucesso e não há conteúdo para retornar.
 
 Exemplo de resposta: Nenhum conteúdo retornado.
 
@@ -331,7 +327,6 @@ nomeCheckpont: Nome do Checkpoint.<br>
 Exemplo de requisição:
 ```
 {
-  "idModelagem": 1,
   "nomeModelagem": "KKKK_Modelo3D",
   "nomeCidade": "Registro",
   "arquivoModelagem": "kkk_modelo.glb",
@@ -347,7 +342,6 @@ Caso essa resposta aconteça, as informações da modelagem foram atualizadas co
 Exemplo de resposta:
 ```
 {
-  "idModelagem": 1,
   "nomeModelagem": "KKKK_Modelo3D",
   "nomeCidade": "Registro",
   "arquivoModelagem": "kkk_modelo.glb",
@@ -397,7 +391,7 @@ Caso essa resposta aconteça, significa que a modelagem com o ID fornecido não 
 Exemplo de resposta:
 ```
 {
-    "error": "Checkpoint não encontrado. "
+    "error": "Modelagem não encontrada. "
 }
 ```
 ##### Requisição Inválida! 400
@@ -422,7 +416,7 @@ Exemplo de resposta:
 }
 ```
 
-## Endpoints de Quiz
+## Endpoints de Quizzes
 ### GET /quiz
 Esse endpoint é responsável por retornar a listagem de todos os quizzes cadastrados no banco de dados.
 
@@ -436,7 +430,6 @@ Caso essa resposta aconteça, você vai receber a listagem de todos os quizzes.
 Exemplo de resposta:
 ```
 {
-  "idQuiz": 1,
   "pergunta": "Os galpões de armazenamento do KKKK possuíam trilhos que interligavam suas dependências. Quais eram os produtos transportados nesses trilhos e armazenados nos galpões?",
   "checkpointQuiz": "Insira o Cp Quiz aqui.",
   "alternativaA": "Grãos como arroz, soja e milho, destinados ao processamento e exportação.",
@@ -461,12 +454,12 @@ Exemplo de resposta:
 Esse endpoint é responsável por cadastrar um novo quiz no banco de dados.
 
 #### Parâmetros:
-  pergunta: Pergunta do quiz a ser cadastrado,<br>
-  checkpointQuiz: Checkpoint do Quiz a ser cadastrado,<br>
-  alternativaA: Alternativa A do quiz,<br>
-  alternativaB: Alternativa B do quiz,<br>
-  alternativaC: Alternativa C do quiz,<br>
-  alternativaD: Alternativa D do quiz,<br>
+  pergunta: Pergunta do quiz a ser cadastrado.<br>
+  checkpointQuiz: Checkpoint do Quiz a ser cadastrado.<br>
+  alternativaA: Alternativa A do quiz.<br>
+  alternativaB: Alternativa B do quiz.<br>
+  alternativaC: Alternativa C do quiz.<br>
+  alternativaD: Alternativa D do quiz.<br>
   alternativaCorreta: Alternativa Correta do quiz.<br>
 
 Exemplo de requisição:
@@ -535,12 +528,12 @@ Exemplo de resposta:
 Esse endpoint é responsável por atualizar as informações de um quiz específico pelo seu ID.
 
 #### Parâmetros:
-  pergunta: Pergunta do quiz a ser cadastrado,<br>
-  checkpointQuiz: Checkpoint do Quiz a ser cadastrado,<br>
-  alternativaA: Alternativa A do quiz,<br>
-  alternativaB: Alternativa B do quiz,<br>
-  alternativaC: Alternativa C do quiz,<br>
-  alternativaD: Alternativa D do quiz,<br>
+  pergunta: Pergunta do quiz a ser cadastrado.<br>
+  checkpointQuiz: Checkpoint do Quiz a ser cadastrado.<br>
+  alternativaA: Alternativa A do quiz.<br>
+  alternativaB: Alternativa B do quiz.<br>
+  alternativaC: Alternativa C do quiz.<br>
+  alternativaD: Alternativa D do quiz.<br>
   alternativaCorreta: Alternativa Correta do quiz.<br>
 
 Exemplo de requisição:
@@ -615,7 +608,7 @@ Caso essa resposta aconteça, significa que o quiz com o ID fornecido não foi e
 Exemplo de resposta:
 ```
 {
-    "error": "Checkpoint não encontrado. "
+    "error": "Quiz não encontrado. "
 }
 ```
 ##### Requisição Inválida! 400
@@ -641,8 +634,8 @@ Exemplo de resposta:
 ```
 
 ## Endpoints de Rotas
-### GET /rota
-Esse endpoint é responsável por retornar a listagem de todos as rotas cadastrados no banco de dados.
+### GET /rotas
+Esse endpoint é responsável por retornar a listagem de todos as rotas cadastradas no banco de dados.
 
 #### Parâmetros:
 Nenhum
@@ -654,7 +647,6 @@ Caso essa resposta aconteça, você vai receber a listagem de todos as rotas.
 Exemplo de resposta:
 ```
 {
-  "idRota": 1,
   "tituloRota": "Trilha do Patrimônio",
   "cidadeLocalizada": "Registro",
   "latitudeRota": -24.4872,
@@ -675,16 +667,16 @@ Exemplo de resposta:
 ```
 
 
-### - POST /rotas
+### - POST /rota
 Esse endpoint é responsável por cadastrar uma nova rota no banco de dados.
 
 #### Parâmetros:
-tituloRota: Título da Rota,<br>
-cidadeLocalizada": Cidade a qual a rota está localizada,<br>
-latitudeRota": Latitude da Rota,<br>
-longitudeRota: Longitude da Rota,<br>
-imagemCapa": Imagem Capa da Rota,<br>
-descricaoRota": Pequena descrição da Rota, <br>
+tituloRota: Título da Rota.<br>
+cidadeLocalizada": Cidade a qual a rota está localizada.<br>
+latitudeRota": Latitude da Rota.<br>
+longitudeRota: Longitude da Rota.<br>
+imagemCapa": Imagem Capa da Rota.<br>
+descricaoRota": Pequena descrição da Rota.<br>
 
 Exemplo de requisição:
 ```
@@ -714,7 +706,7 @@ Exemplo de resposta:
 }
 ```
 
-### - DELETE /rota
+### - DELETE /rota/
 Esse endpoint é responsável por deletar uma rota específica pelo seu ID.
 
 #### Parâmetros:
@@ -722,7 +714,7 @@ id: ID da rota a ser deletada.
 
 #### Respostas:
 ##### Sem Conteúdo! 204
-Caso essa resposta aconteça, a rota foi deletado com sucesso e não há conteúdo para retornar.
+Caso essa resposta aconteça, a rota foi deletada com sucesso e não há conteúdo para retornar.
 
 Exemplo de resposta: Nenhum conteúdo retornado.
 
@@ -753,11 +745,11 @@ Esse endpoint é responsável por atualizar as informações de uma rota especí
 #### Parâmetros:
 idRota: ID da Rota a ser atualizada.<br>
 tituloRota: Título da Rota.<br>
-cidadeLocalizada": Cidade a qual a rota está localizada.<br>
-latitudeRota": Latitude da Rota.<br>
+cidadeLocalizada: Cidade a qual a rota está localizada.<br>
+latitudeRota: Latitude da Rota.<br>
 longitudeRota: Longitude da Rota.<br>
-imagemCapa": Imagem Capa da Rota.br>
-descricaoRota": Pequena descrição da Rota.<br>
+imagemCapa: Imagem Capa da Rota.br>
+descricaoRota: Pequena descrição da Rota.<br>
 
 Exemplo de requisição:
 ```
@@ -823,12 +815,12 @@ Exemplo de resposta:
 ```
 
 ##### Não Encontrado! 404
-Caso essa resposta aconteça, significa que a modelagem com o ID fornecido não foi encontrada.
+Caso essa resposta aconteça, significa que a rota com o ID fornecido não foi encontrada.
 
 Exemplo de resposta:
 ```
 {
-    "error": "Checkpoint não encontrado. "
+    "error": "Rota não encontrada. "
 }
 ```
 ##### Requisição Inválida! 400
@@ -854,7 +846,7 @@ Exemplo de resposta:
 ```
 
 ## Endpoints de Usuários
-### GET /usuário
+### GET /usuarios
 Esse endpoint é responsável por retornar a listagem de todos os usuários cadastrados no banco de dados.
 
 #### Parâmetros:
@@ -923,7 +915,7 @@ Exemplo de resposta:
 }
 ```
 
-### - DELETE /usuario
+### - DELETE /usuario/
 Esse endpoint é responsável por deletar um usuário específico pelo seu ID.
 
 #### Parâmetros:
@@ -1033,7 +1025,7 @@ Caso essa resposta aconteça, significa que o usuário com o ID fornecido não f
 Exemplo de resposta:
 ```
 {
-    "error": "Checkpoint não encontrado. "
+    "error": "Usuário não encontrado. "
 }
 ```
 ##### Requisição Inválida! 400
