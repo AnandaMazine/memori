@@ -10,14 +10,14 @@ class checkpointService {
     }
   }
   
-async Create({
+async Create(
   nomeCheckpoint,
   latitudeCheckpoint,
   longitudeCheckpoint,
   tituloRota,
   descricaoCheckpoint,
   imagemCheckpoint,
-}) {
+) {
   try {
     const newCheckpoint = new Checkpoint({
       nomeCheckpoint,

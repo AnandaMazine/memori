@@ -37,7 +37,7 @@ class RotaService {
 
     async Update(id, tituloRota, cidadeLocalizada, longitudeRota, latituteRota, imagemCapa, descricaoRota) {
         try {
-            const rota = await Rotas.findByIdAndUpdate(id, {
+            const rota = await Rota.findByIdAndUpdate(id, {
                 tituloRota,
                 cidadeLocalizada,
                 longitudeRota,

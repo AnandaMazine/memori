@@ -1,4 +1,4 @@
-import checkpointService from "../services/CheckpointService.js"; // Importando o serviço de Checkpoints
+import checkpointService from "../services/checkpointService.js"; // Importando o serviço de Checkpoints
 import { ObjectId } from "mongodb";
 
 // Função para listar Checkpoints
